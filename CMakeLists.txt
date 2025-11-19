@@ -3,15 +3,17 @@ project(libmotioncapture)
 
 # define some options
 option(LIBMOTIONCAPTURE_BUILD_PYTHON_BINDINGS "Generate Python Bindings" ON)
-option(LIBMOTIONCAPTURE_ENABLE_QUALISYS "Enable Qualisys" OFF)
 option(LIBMOTIONCAPTURE_ENABLE_OPTITRACK "Enable Optitrack" ON)
+option(LIBMOTIONCAPTURE_BUILD_EXAMPLE "Enable Example application" ON)
+
+option(LIBMOTIONCAPTURE_ENABLE_QUALISYS "Enable Qualisys" OFF)
 option(LIBMOTIONCAPTURE_ENABLE_OPTITRACK_CLOSED_SOURCE "Enable Optitrack (Closed Source)" OFF)
 option(LIBMOTIONCAPTURE_ENABLE_VICON "Enable Vicon" OFF)
 option(LIBMOTIONCAPTURE_ENABLE_NOKOV "Enable Nokov" OFF)
 option(LIBMOTIONCAPTURE_ENABLE_VRPN "Enable VRPN" OFF)
 option(LIBMOTIONCAPTURE_ENABLE_FZMOTION "Enable FZMOTION" OFF)
 option(LIBMOTIONCAPTURE_ENABLE_MOTIONANALYSIS "Enable MotionAnalysis" OFF)
-option(LIBMOTIONCAPTURE_BUILD_EXAMPLE "Enable Example application" ON)
+
 
 # Enable C++14
 set(CMAKE_CXX_STANDARD 14)
@@ -27,9 +29,9 @@ add_definitions(
 
 find_package(Eigen3 REQUIRED)
 
+set(NATNET_SDK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/NatNetSDKCrossplatform/)
 set(VICON_SDK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/vicon-datastream-sdk/)
 set(QUALISYS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/qualisys_cpp_sdk/)
-set(NATNET_SDK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/NatNetSDKCrossplatform/)
 set(NOKOV_SDK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/nokov_sdk/)
 set(VRPN_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/vrpn/)
 set(MOTIONANALYSIS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/deps/cortex_sdk_linux/)
