@@ -58,25 +58,6 @@ set(my_files
   src/mock.cpp
 )
 
-if (LIBMOTIONCAPTURE_ENABLE_VICON)
-  message("including vicon")
-
-  add_definitions(-DENABLE_VICON)
-  add_subdirectory(deps/vicon-datastream-sdk EXCLUDE_FROM_ALL)
-  set(my_include_directories
-    ${my_include_directories}
-    ${VICON_SDK_DIR}/Vicon/CrossMarket/DataStream
-  )
-  set(my_files
-    ${my_files}
-    src/vicon.cpp
-  )
-  set(my_libraries
-    ${my_libraries}
-    ViconDataStreamSDK_CPP
-  )
-endif()
-
 if (LIBMOTIONCAPTURE_ENABLE_OPTITRACK)
   message("including optitrack")
 
@@ -116,9 +97,29 @@ if (LIBMOTIONCAPTURE_ENABLE_OPTITRACK_CLOSED_SOURCE)
       ${my_libraries}
       NatNet
     )
+    message("[OCS] finished")
   else()
     message(WARNING "Can not include optitrack_closed_source due to missing SDK. (${CMAKE_SYSTEM_NAME}, ${CMAKE_SYSTEM_PROCESSOR})")
   endif()
+endif()
+
+if (LIBMOTIONCAPTURE_ENABLE_VICON)
+  message("including vicon")
+
+  add_definitions(-DENABLE_VICON)
+  add_subdirectory(deps/vicon-datastream-sdk EXCLUDE_FROM_ALL)
+  set(my_include_directories
+    ${my_include_directories}
+    ${VICON_SDK_DIR}/Vicon/CrossMarket/DataStream
+  )
+  set(my_files
+    ${my_files}
+    src/vicon.cpp
+  )
+  set(my_libraries
+    ${my_libraries}
+    ViconDataStreamSDK_CPP
+  )
 endif()
 
 if (LIBMOTIONCAPTURE_ENABLE_QUALISYS)
